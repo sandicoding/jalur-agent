@@ -1,6 +1,8 @@
-# skill-metro
+# jalur-agent
 
-**A live metro map of your Claude Code skills.** See which phase the agent is in, where it transfers to another skill or a subagent, how long each tool call took, and replay any run, in a view made to be shown on a screen.
+**A live transit map of your Claude Code skills.** See which phase the agent is in, where it transfers to another skill or a subagent, how long each tool call took, and replay any run, in a view made to be shown on a screen.
+
+*Jalur* is Indonesian for "line" or "route", as in a train line: each skill gets its own line.
 
 [Bahasa Indonesia](README.id.md)
 
@@ -8,9 +10,9 @@
 
 ## Why another agent dashboard?
 
-There are good open-source dashboards for Claude Code already (see [Related projects](#related-projects)). They show **tool calls**. skill-metro shows **your process**:
+There are good open-source dashboards for Claude Code already (see [Related projects](#related-projects)). They show **tool calls**. jalur-agent shows **your process**:
 
-| | Typical agent dashboards | skill-metro |
+| | Typical agent dashboards | jalur-agent |
 |---|---|---|
 | Unit on screen | Tool calls, per agent | **Phases of a skill pipeline** you define (stations on a line) |
 | Skill → skill hand-offs | Not modelled | Drawn as **transfer lines** at the station where they happen |
@@ -21,27 +23,27 @@ There are good open-source dashboards for Claude Code already (see [Related proj
 ## Install
 
 ```bash
-claude plugin marketplace add sandicoding/skill-metro
-claude plugin install skill-metro@skill-metro
+claude plugin marketplace add sandicoding/jalur-agent
+claude plugin install jalur-agent@jalur-agent
 ```
 
 Then in Claude Code:
 
 ```
-/skill-metro:board            # start the board, prints http://localhost:4321
+/jalur-agent:board            # start the board, prints http://localhost:4321
 ```
 
 Run the bundled example skill to see a run move along the line:
 
 ```
-/skill-metro:feature-flow add a dark-mode toggle to the settings page
+/jalur-agent:feature-flow add a dark-mode toggle to the settings page
 ```
 
-Requires Node.js 18+. Data lives in `~/.skill-metro` (override with `SKILL_METRO_DATA`).
+Requires Node.js 18+. Data lives in `~/.jalur-agent` (override with `JALUR_AGENT_DATA`).
 
 ## Features
 
-- **Metro map of phases.** Stations light up as the run moves on; the active one pulses.
+- **Transit map of phases.** Stations light up as the run moves on; the active one pulses.
 - **Transfers.** When your skill calls another skill or spawns a subagent, a coloured branch line appears at that station.
 - **Tool calls with duration and status.** Pre/Post events are merged into one row; failures are marked.
 - **Run history and replay.** Pick any past run and replay it at presentation speed.
@@ -52,7 +54,7 @@ Requires Node.js 18+. Data lives in `~/.skill-metro` (override with `SKILL_METRO
 
 ## Your own pipeline
 
-Copy `pipelines/feature-flow.json` to `~/.skill-metro/pipelines/<name>.json` and open `http://localhost:4321/?pipeline=<name>`.
+Copy `pipelines/feature-flow.json` to `~/.jalur-agent/pipelines/<name>.json` and open `http://localhost:4321/?pipeline=<name>`.
 
 ```jsonc
 {
