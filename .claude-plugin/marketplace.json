@@ -1,0 +1,11 @@
+{
+  "name": "skill-metro",
+  "owner": { "name": "sandicoding" },
+  "plugins": [
+    {
+      "name": "skill-metro",
+      "source": "./",
+      "description": "Live metro map of Claude Code skills, with replay and presentation mode, plus three specialist skills."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": { "en": "Feature Flow line", "id": "Jalur Feature Flow" },
+  "badge": "F",
+  "startSkill": "feature-flow",
+  "steps": [
+    { "en": "Understand", "id": "Pahami" },
+    { "en": "Plan", "id": "Rencana" },
+    { "en": "Implement", "id": "Ngoding" },
+    { "en": "Test", "id": "Tes" },
+    { "en": "Review", "id": "Review" },
+    { "en": "Commit", "id": "Commit" },
+    { "en": "Ship", "id": "Kirim" }
+  ],
+  "whys": [
+    { "en": "Read the request and the code it touches, so the change solves the real problem.", "id": "Baca permintaan dan kode yang kena, biar yang dibenerin masalah yang sebenarnya." },
+    { "en": "Write the steps down and agree on them before touching code.", "id": "Tulis langkahnya dan sepakati dulu sebelum nyentuh kode." },
+    { "en": "Change only what the plan names.", "id": "Ubah cuma yang ada di rencana." },
+    { "en": "Run the tests, so you learn about breakage before your users do.", "id": "Jalanin tes, biar kerusakan ketahuan sebelum user nemu." },
+    { "en": "Get a second look for bugs and simpler code.", "id": "Minta dicek ulang: bug dan kode yang bisa lebih simpel." },
+    { "en": "Commit only the files that belong to this change.", "id": "Commit cuma file yang memang bagian dari perubahan ini." },
+    { "en": "Push and open a pull request so the team can review.", "id": "Push dan bikin PR biar tim bisa review." }
+  ],
+  "rules": [
+    { "to": 0, "kind": "Skill", "text": "^feature-flow$" },
+    { "to": 1, "from": 0, "kind": "^(TodoWrite|EnterPlanMode|ExitPlanMode)$" },
+    { "to": 2, "from": 0, "kind": "^(Edit|Write|MultiEdit|NotebookEdit)$" },
+    { "to": 3, "from": 2, "kind": "Shell", "text": "\\btest\\b|jest|vitest|pytest|mocha|go test|cargo test|phpunit" },
+    { "to": 4, "from": 2, "kind": "Skill", "text": "review|simplify" },
+    { "to": 5, "from": 2, "kind": "Shell", "text": "git commit" },
+    { "to": 6, "from": 5, "kind": "Shell", "text": "git push|gh pr create" }
+  ],
+  "skills": {
+    "feature-flow": {
+      "letter": "F", "name": "Feature Flow", "color": "#D7263D",
+      "fungsi": { "en": "Takes one feature from request to pull request in fixed phases.", "id": "Ngerjain satu fitur dari permintaan sampai PR dengan fase yang tetap." },
+      "manfaat": { "en": "Every run follows the same steps, so nothing is skipped and the work is easy to explain.", "id": "Tiap run lewat langkah yang sama, jadi nggak ada yang kelewat dan gampang dijelasin." }
+    },
+    "code-review": {
+      "letter": "R", "name": "Code Review", "color": "#1F6FEB",
+      "fungsi": { "en": "Reviews the diff for bugs.", "id": "Ngecek diff buat nyari bug." },
+      "manfaat": { "en": "Bugs are caught before a teammate has to.", "id": "Bug ketangkep sebelum rekan setim yang nemu." }
+    },
+    "simplify": {
+      "letter": "S", "name": "Simplify", "color": "#1A9E5B",
+      "fungsi": { "en": "Looks for reuse and simpler code in the change.", "id": "Nyari kode yang bisa dipakai ulang dan disederhanain." },
+      "manfaat": { "en": "Less code to maintain.", "id": "Kode yang harus dirawat jadi lebih sedikit." }
+    },
+    "specialist-visual-designer": {
+      "letter": "V", "name": "Visual Designer", "color": "#8E44AD",
+      "fungsi": { "en": "Designs a page with a plan, then critiques it from a screenshot.", "id": "Ngedesain halaman pakai rencana, terus dikritik dari screenshot." },
+      "manfaat": { "en": "Pages look intentional instead of generic.", "id": "Halaman kelihatan dirancang, bukan generik." }
+    }
+  }
+}
