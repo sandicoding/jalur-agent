@@ -1,4 +1,4 @@
-// skill-metro local server (127.0.0.1 only, no dependencies).
+// jalur-agent local server (127.0.0.1 only, no dependencies).
 //   /                 the board         (?pipeline=<name>&lang=en|id)
 //   /events           SSE of events.jsonl
 //   /pipeline/<name>  pipeline config: <data>/pipelines/<name>.json wins over the bundled example
@@ -9,7 +9,7 @@ const path = require('path');
 const { DATA, ROOT, EVENTS, ensure } = require('./paths');
 
 ensure();
-const PORT = Number(process.env.SKILL_METRO_PORT || 4321);
+const PORT = Number(process.env.JALUR_AGENT_PORT || 4321);
 const clients = new Set();
 let offset = 0;
 
@@ -74,12 +74,12 @@ const server = http.createServer((req, res) => {
 let port = PORT;
 server.on('error', (e) => {
   if (e.code === 'EADDRINUSE' && port < PORT + 10) { port++; return server.listen(port, '127.0.0.1'); }
-  console.error('skill-metro server failed:', e.message); process.exit(1);
+  console.error('jalur-agent server failed:', e.message); process.exit(1);
 });
 server.on('listening', () => {
   readAll();
   setInterval(poll, 400);
   fs.writeFileSync(path.join(DATA, 'port.txt'), String(port));
-  console.log(`skill-metro: http://localhost:${port}`);
+  console.log(`jalur-agent: http://localhost:${port}`);
 });
 server.listen(port, '127.0.0.1');

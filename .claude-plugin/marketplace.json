@@ -1,11 +1,11 @@
 {
-  "name": "skill-metro",
+  "name": "jalur-agent",
   "owner": { "name": "sandicoding" },
   "plugins": [
     {
-      "name": "skill-metro",
+      "name": "jalur-agent",
       "source": "./",
-      "description": "Live metro map of Claude Code skills, with replay and presentation mode, plus three specialist skills."
+      "description": "Live transit map of Claude Code skills, with replay and presentation mode, plus three specialist skills."
     }
   ]
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>skill-metro</title>
+<title>jalur-agent</title>
 <style>
 :root{--ground:#E9ECEF;--surface:#FFFFFF;--ink:#15181D;--muted:#5F6875;--line:#D7263D;--rail:#C5CBD3;
 --q:#1F6FEB;--s:#1A9E5B;--soft:#F4F6F8;
@@ -113,7 +113,7 @@ select:focus-visible,input:focus-visible{outline:3px solid var(--line);outline-o
 </style></head><body>
 <header>
  <div class="badge" aria-hidden="true" id="badge">·</div>
- <div class="title"><b id="pname">skill-metro</b><span id="psub"></span></div>
+ <div class="title"><b id="pname">jalur-agent</b><span id="psub"></span></div>
  <label class="live" id="live"><i></i><span id="liveT"></span></label>
  <select id="pipeSel" aria-label="Pipeline"></select>
  <select id="runSel" aria-label="Run"></select>
@@ -165,7 +165,7 @@ const I18N={
   failedShort:'gagal',subagent:'Subagent',subagentWhat:'Agent terpisah yang ngerjain sebagian tugas, terus balikin hasilnya ke sesi utama.',
   chips:{all:'Semua',Skill:'Skill',Shell:'Shell',edit:'Edit/Write',read:'Baca/Cari',mcp:'MCP',fail:'Gagal'},other:'English',session:'sesi'}};
 const qs=new URLSearchParams(location.search);
-let LANG=qs.get('lang')||localStorage.getItem('sm-lang')||((navigator.language||'').startsWith('id')?'id':'en');if(!I18N[LANG])LANG='en';
+let LANG=qs.get('lang')||localStorage.getItem('ja-lang')||((navigator.language||'').startsWith('id')?'id':'en');if(!I18N[LANG])LANG='en';
 const T=k=>I18N[LANG][k];
 const L=v=>v&&typeof v==='object'&&!Array.isArray(v)?(v[LANG]??v.en??Object.values(v)[0]):v; // pipeline strings may be {en,id}
 const PIPE=qs.get('pipeline')||'feature-flow';
@@ -284,7 +284,7 @@ function texts(){
 fetch('/pipeline/'+encodeURIComponent(PIPE)).then(r=>{if(!r.ok)throw new Error('pipeline');return r.json()}).then(p=>{P=p;
  P.transfers=Object.fromEntries(Object.entries(P.skills||{}).filter(([k])=>k!==P.startSkill));
  P.transfers[AGENT]={letter:'A',name:T('subagent'),color:'#5F6875',fungsi:T('subagentWhat')};
- $('pname').textContent=L(P.name);$('badge').textContent=P.badge||'·';document.title=L(P.name)+' · skill-metro';
+ $('pname').textContent=L(P.name);$('badge').textContent=P.badge||'·';document.title=L(P.name)+' · jalur-agent';
  P.steps.forEach((s,i)=>$('map').insertAdjacentHTML('beforeend',`<div class="st" style="left:${i/(P.steps.length-1)*100}%"><div class="br" id="b${i}"><div class="ln"></div><span class="tag"></span></div><div class="dot"></div><div class="lab"><i>${String(i+1).padStart(2,'0')}</i>${esc(L(s))}</div></div>`));
  texts();
  const es=new EventSource('/events');let ready=false;
@@ -297,7 +297,7 @@ fetch('/pipeline/'+encodeURIComponent(PIPE)).then(r=>{if(!r.ok)throw new Error('
 fetch('/pipelines').then(r=>r.json()).then(names=>{$('pipeSel').innerHTML=names.map(n=>`<option${n===PIPE?' selected':''}>${esc(n)}</option>`).join('');if(names.length<2)$('pipeSel').style.display='none'}).catch(()=>{});
 
 $('pipeSel').onchange=e=>{qs.set('pipeline',e.target.value);location.search=qs.toString()};
-$('lang').onclick=()=>{LANG=LANG==='en'?'id':'en';localStorage.setItem('sm-lang',LANG);qs.set('lang',LANG);history.replaceState(null,'','?'+qs.toString());location.reload()};
+$('lang').onclick=()=>{LANG=LANG==='en'?'id':'en';localStorage.setItem('ja-lang',LANG);qs.set('lang',LANG);history.replaceState(null,'','?'+qs.toString());location.reload()};
 $('runSel').onchange=e=>{shown=e.target.value||null;liveRender()};
 $('chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;flt.k=b.dataset.k;document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));renderLog()};
 $('q').oninput=e=>{flt.q=e.target.value.trim().toLowerCase();renderLog()};

@@ -5,7 +5,7 @@ description: Take one feature or bug fix from request to pull request in fixed p
 
 # Feature flow
 
-The example pipeline of skill-metro: each phase below is a station on the board, so keep them in order.
+The example pipeline of jalur-agent: each phase below is a station on the board, so keep them in order.
 
 1. **Understand.** Read the request and the code it touches (Read, Grep). Done when you can name the files that will change and why.
 2. **Plan.** Write the steps as a todo list and show them to the user. Wait for their OK before editing.

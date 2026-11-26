@@ -1,4 +1,4 @@
-// skill-metro hook: one short, redacted JSON line per Claude Code event, appended to events.jsonl.
+// jalur-agent hook: one short, redacted JSON line per Claude Code event, appended to events.jsonl.
 // Never blocks or fails the session: every error is swallowed and the exit code is always 0.
 // What is stored: tool kind + a short summary. What is never stored: prompt text, file contents, diffs.
 const fs = require('fs');

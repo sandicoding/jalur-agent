@@ -3,9 +3,9 @@
 ```mermaid
 flowchart LR
   CC[Claude Code session] -- hook events --> HK[scripts/hook.js]
-  HK --> EV[(~/.skill-metro/events.jsonl)]
+  HK --> EV[(~/.jalur-agent/events.jsonl)]
   EV --> SV[scripts/server.js<br/>127.0.0.1:4321]
-  PL[(pipelines/*.json<br/>~/.skill-metro/pipelines/*.json)] --> SV
+  PL[(pipelines/*.json<br/>~/.jalur-agent/pipelines/*.json)] --> SV
   SV -- SSE --> BD[web/board.html]
 ```
 
@@ -14,7 +14,7 @@ flowchart LR
 | `hooks/hooks.json` | Registers `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop` → `scripts/hook.js` |
 | `scripts/hook.js` | Writes one redacted JSON line per event. Swallows every error and always exits 0, so it can never block a session |
 | `scripts/server.js` | Serves the board, streams `events.jsonl` over Server-Sent Events, serves pipeline configs (user folder wins over bundled) |
-| `scripts/start.js` | Starts / stops / reports the server in the background (`/skill-metro:board`) |
+| `scripts/start.js` | Starts / stops / reports the server in the background (`/jalur-agent:board`) |
 | `web/board.html` | Pairs Pre/Post events, splits runs per session, infers the phase from pipeline rules, renders the map, log and stats |
 
 ## Event format

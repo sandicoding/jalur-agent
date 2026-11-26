@@ -1,7 +1,7 @@
 {
-  "name": "skill-metro",
+  "name": "jalur-agent",
   "version": "0.1.0",
-  "description": "A live metro map of your Claude Code skills: see which phase the agent is in, where it transfers to other skills, and replay any run. Plus three specialist skills (visual designer, pitch storyteller, business strategist).",
+  "description": "A live transit map of your Claude Code skills: see which phase the agent is in, where it transfers to other skills, and replay any run. Plus three specialist skills (visual designer, pitch storyteller, business strategist).",
   "author": { "name": "sandicoding" },
   "license": "MIT",
   "keywords": ["observability", "hooks", "skills", "visualization", "presentation"]
